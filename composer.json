@@ -1,0 +1,17 @@
+{
+    "name": "lenovo/jwt_paa",
+    "autoload": {
+        "psr-4": {
+            "Lenovo\\JwtPaa\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Zamzamillham",
+            "email": "zamzamilham17@gmail.com"
+        }
+    ],
+    "require": {
+        "firebase/php-jwt": "^6.4"
+    }
+}
