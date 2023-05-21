@@ -1,7 +1,6 @@
 <?php
 require_once('./config/koneksi.php');
-
-
+/*
 if(isset($_POST['submit'])){
 
     $name = mysqli_real_escape_string($conn, $_POST['username']);
@@ -23,6 +22,51 @@ if(isset($_POST['submit'])){
            header('location:login.php');
         }
      }
+ }*/
+ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+    $username = $_POST['username'];
+    $email =$_POST['email'];
+    $password = $_POST['password'];
+    $cpassword = $_POST['cpassword'];
+    
+
+ 
+    if ($password !== $cpassword) {
+        $error = 'Password tidak sesuai dengan konfirmasi password';
+    } else {
+        
+        $url = 'http://localhost/JWT_PAA/api/signAdmin.php';
+        $data = [
+            'username' => $username,
+            'email' => $email,
+            'password' => $password
+        ];
+
+        $options = [
+            'http' => [
+                'method' => 'POST',
+                'header' => 'Content-Type: application/json',
+                'content' => json_encode($data)
+            ]
+        ];
+
+        $context = stream_context_create($options);
+        $result = file_get_contents($url, false, $context);
+
+
+        if ($result === false) {
+            $error = 'Terjadi kesalahan saat membuat akun';
+        } else {
+            $response = json_decode($result, true);
+            if ($response && isset($response['status']) && $response['status'] === 'success') {
+                header('Location: login.php');
+                exit();
+            } else {
+                $error = isset($response['message']) ? $response['message'] : 'Terjadi kesalahan saat membuat akun';
+            }
+        }
+    }
  }
 ?>
 <!DOCTYPE html>
@@ -83,7 +127,7 @@ if(isset($message)){
             <!--<div class="sign__in button">
                 <input type="submit" name="submit" value="register now" class="btn">
             </div>-->
-            <button class="sign__in button" type="submit" name="submit" >
+            <button class="sign__in button" type="submit" name="submit" value="Daftar">
                Sign Now
             </button>
             <div class="text__login">Already have an account? <a href="login.php" class="log__now">login now</a></div>
