@@ -1,9 +1,15 @@
-
-
 <?php
-define('HOST','localhost');
-define('USER','root');
-define('DB','agro_db');
-define('PASS','');
-$db = new mysqli(HOST,USER,PASS,DB) 
-or die('Connetion error to the database');
+// Konfigurasi koneksi database
+$host = "localhost";
+$username = "root";
+$password = "";
+$database = "flower_db";
+
+// Membuat koneksi ke database
+$conn = mysqli_connect($host, $username, $password, $database);
+
+// Memeriksa koneksi
+if (!$conn) {
+    die("Koneksi gagal: " . mysqli_connect_error());
+}
+?>

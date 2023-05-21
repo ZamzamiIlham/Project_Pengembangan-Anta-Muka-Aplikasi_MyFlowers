@@ -1,4 +1,5 @@
 <?php
+
 header('Access-Control-Allow-Origin:*');
 header('Access-Control-Allow-Method:POST');
 include './config/koneksi.php';
@@ -8,10 +9,10 @@ use \Firebase\JWT\JWT;
 
 if(isset($_POST['submit'])){
 
-    $email = mysqli_real_escape_string($db, $_POST['email']);
-    $pass = mysqli_real_escape_string($db, md5($_POST['password']));
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $pass = mysqli_real_escape_string($conn,($_POST['password']));
  
-    $select_users = mysqli_query($db, "SELECT * FROM `users` WHERE email = '$email' AND password = '$pass'") or die('query failed');
+    $select_users = mysqli_query($conn, "SELECT * FROM `admin` WHERE email = '$email' AND password = '$pass'") or die('query failed');
  
     if(mysqli_num_rows($select_users) > 0){
  
@@ -35,7 +36,7 @@ if(isset($_POST['submit'])){
                 'jwt' => $jwt,
                 'message' => 'Login Successfully',
             ]);
-            header('location:dashboard.php');
+            header('location:admin/home.php');
         }else{
             echo json_encode([
                 'status' => 0,
@@ -43,10 +44,7 @@ if(isset($_POST['submit'])){
             ]);
         }
     }else {
-        echo json_encode([
-            'status' => 0,
-            'message' => 'Access Denied',
-        ]);
+        
     }
 }
 
@@ -65,24 +63,18 @@ if(isset($_POST['submit'])){
 </head>
 <body>
 <div class="login__container container">
-    <div class="login__left">
-        <h1 class="text-1">Agrocorp</h1>
-        <p class="text-2">Mendaftar untuk bergabung bersama kami</p>       
+    <div class="login__left flex">
+        <img src="./asset/logo.png" alt="">
+        <h1>Flowers Shop</h1>
     </div>
-    <div class="login__right">
-        <img src="./asset/logo_agro.png" alt="home image" class="home__img">
-            <div class="title__header">
-                <h2>Login</h2>
-                <p>Bersama kami memajukan pertanian indonesia</p>
-            </div>
-            <button class="sign__up button" type="button">
-                <div class="sign__text">
-                    <i class="ri-google-fill"></i> Sign Up With Google
-                </div>
-            </button>
+    <div class="login__right flex">
+        <div class="lr__header flex">
+            <h1>Login</h1>
+            <p>Toko bunga terbaik di indonesia</p>
+        </div>
         
         <form action="" method="POST">
-        <div class="log__input">
+        <div class="lr__input flex">
             <div class="input__box">
                 <i class="ri-mail-line"></i>
                 <input type="email" name="email" placeholder="enter your email" required class="box">

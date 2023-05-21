@@ -1,21 +1,24 @@
 <?php
 require_once('./config/koneksi.php');
 
+
 if(isset($_POST['submit'])){
 
-    $name = mysqli_real_escape_string($db, $_POST['name']);
-    $email = mysqli_real_escape_string($db, $_POST['email']);
-    $pass = mysqli_real_escape_string($db, md5($_POST['password']));
-    $cpass = mysqli_real_escape_string($db, md5($_POST['cpassword']));
-    $select_users = mysqli_query($db, "SELECT * FROM `users` WHERE email = '$email' AND password = '$pass'") or die('query failed');
+    $name = mysqli_real_escape_string($conn, $_POST['username']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $pass = mysqli_real_escape_string($conn, ($_POST['password']));
+    $cpass = mysqli_real_escape_string($conn, ($_POST['cpassword']));
+    $select_users = mysqli_query($conn, "SELECT * FROM `admin` WHERE email = '$email' AND password = '$pass'") or die('query failed');
  
     if(mysqli_num_rows($select_users) > 0){
         $message[] = 'user already exist!';
+       
      }else{
         if($pass != $cpass){
            $message[] = 'confirm password not matched!';
+         
         }else{
-           mysqli_query($db, "INSERT INTO `users`(name, email, password, user_type) VALUES('$name', '$email', '$cpass', '$user_type')") or die('query failed');
+           mysqli_query($conn, "INSERT INTO `admin`(username, email, password) VALUES('$name', '$email', '$cpass')") or die('query failed');
            $message[] = 'registered successfully!';
            header('location:login.php');
         }
@@ -47,29 +50,23 @@ if(isset($message)){
    }
 }
 ?>
-<div class="sign__container container">
-    <div class="sign__left">
-        <h1 class="text-1">Agrocorp</h1>
-        <p class="text-2">Aplikasi yang menyatukan pelaku agro di Indonesia</p>       
+<div class="login__container container">
+    <div class="login__left flex">
+        <img src="../images/logo.png" alt="">
+        <h1>Flowers Shop</h1>
     </div>
 
-  
-    <div class="sign__right">
-        <img src="./asset/logo_agro.png" alt="home image" class="home__img">
-            <div class="title__header">
-                <h2>Sign Up</h2>
-                <p>Mendaftar untuk bergabung bersama kami</p>
-            </div>
-            <button class="sign__up button" type="button">
-                <div class="sign__text">
-                    <i class="ri-google-fill"></i> Sign Up With Google
-                </div>
-            </button>
+    <div class="login__right flex">
+        <div class="lr__header flex">
+            <h1>Register</h1>
+            <p>Toko bunga terbaik di indonesia</p>
+        </div>
+
         <form action="" method="POST">
-        <div class="log__input">
+        <div class="lr__input flex">
             <div class="input__box">
                 <i class="ri-user-line"></i>
-                <input type="name" name="name" placeholder="enter your name " required class="box">
+                <input type="username" name="username" placeholder="enter your username " required class="box">
             </div>
             <div class="input__box">
                 <i class="ri-mail-line"></i>

@@ -1,23 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Rubik:wght@500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Poppins:wght@300;400;500;600&display=swap');
 
 :root{
     --header-height: 3.5rem;
 
     /*========== Colors ==========*/
     /*Color mode HSL(hue, saturation, lightness)*/
-    --first-color: rgb(21, 152, 149);
-    --first-color-alt:rgb(252, 134, 84);
-    --title-color:rgb(26, 26, 26);
-    --white-color: rgb(255, 255, 255);
-    --body-color: rgb(246, 251, 255);
-    --container-color: rgb(43, 49, 53);
+    --hijau-muda: rgb(65, 100, 74);
+    --hijau-tua:rgb(38, 58, 41);
+    --orange:rgb(232, 106, 51);
+    --cream:rgb(242, 227, 219);
+    --body-color: rgb(255, 255, 255);
+    --container-color: rgb(29, 32, 34);
   
     /*========== Font and typography ==========*/
     /*.5rem = 8px | 1rem = 16px ...*/
-    --body-font: "Poppins", sans-serif;
-    --title-font: "Lora", serif;
-    --subtitle-font: "Dancing Script", cursive;
-    --home--font: 'Rubik', sans-serif;
+    --title-font: 'Merriweather', serif;
+    --body-font: 'Poppins', sans-serif;
     --biggest-font-size: 2.25rem;
     --h1-font-size: 1.5rem;
     --h2-font-size: 1.25rem;
@@ -34,6 +32,7 @@
     --z-tooltip: 10;
     --z-fixed: 100;
 }
+
 @media screen and (min-width: 1024px) {
     :root {
       --biggest-font-size: 4rem;
@@ -45,6 +44,7 @@
       --smaller-font-size: .813rem;
     }
 }
+
 /*=============== BASE ===============*/
 * {
     box-sizing: border-box;
@@ -58,6 +58,7 @@
   
   body {
     font-family: var(--body-font);
+    font-style: var(--title-font);
     font-size: var(--normal-font-size);
     background-color: var(--body-color);
     color: var(--text-color);
@@ -97,154 +98,139 @@
     display: flex;
   }
 
-/*=============== LOGIN ===============*/
-.login__container,.sign__container{
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 2rem;
+/*============= Login =================*/
+.login__container{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--cream);
+    height: 100vh;
 }
-.login__left,.login__right,.sign__right,.sign__left{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.login__left{
+    height: 250px;
+    background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5))
+    , url('./asset/login_left.jpg');
+    background-size: cover;
+    background-position: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-bottom: 2rem;
 }
-.login__left,.sign__left{
-  height: 200px;
-  background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5))
-  , url('./asset/agro_bg.jpg');
-  background-size: cover;
-  background-position: center;
-  flex-direction: column;
-  color: var(--white-color);
-  margin-bottom: 2rem;
+.login__left img{
+    width: 80px;
+    padding-bottom: 1rem;
 }
-.login__left h1,.sign__left h1{
-  font-weight: 600;
+.login__left h1,.lr__header h1{
+    font-family: var(--title-font);
 }
-.login__right,.sign__right{
-  flex-direction: column;
-  
+.login__left p{
+    text-align: center;
 }
-.login__right img,.sign__right img{
-  width: 120px;
-  margin-bottom: 2rem;
+.login__right{
+    padding-top: 1.5rem;
+    flex-direction: column;
+    align-items: center;
 }
-.title__header{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: var(--title-color);
-  padding-bottom: 1rem;
+.lr__header{
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 1.5rem;
 }
-.title__header h2{
-  font-weight: 600;
+.lr__header h1{
+    font-weight: 600;
+    color: var(--hijau-muda);
 }
-.sign__up{
-  display: block;
-  padding: .8rem 1.5rem;
-  border-radius: .5rem;
-  border: 1px solid rgb(32, 32, 32);
-  width: 300px;
-  color: var(--title-color);
-  background: var(--first-color);
-  cursor: pointer;
-  margin-bottom: 2rem;
-  transition: background .3s;
+.lr__header p{
+    padding-top: .8rem;
+    color: var(--hijau-muda);
 }
-.sign__text{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: .5rem;
-}
-.sign__text i{
-  font-size: 1.5rem;
-}
-.sign__up:hover{
-  background: var(--title-color);
-  color: var(--body-color);
-}
-.log__input{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: var(--title-color);
+.lr__input{
+    flex-direction: column;
+    align-items: center;
 }
 .input__box{
-  display: flex;
-  align-items: center;
-  margin-bottom: .5rem;
-}
-.input__box input{
-  outline: none;
-  border: none;
-  padding: .8rem 2rem .8rem 2rem;
-  font-size: 16px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  color: var(--first-color);
-  background: none;
-  border-bottom: 2px solid rgba(255, 255, 255, 1);
-}
-.input__box input:focus,
-.input__box input:valid{
-  border-color: var(--first-color);
+    align-items: center;
+    padding-bottom: 1rem;
+    font-size: 1.5rem;
+    color: var(--title-color);
 }
 .input__box i{
-  position: absolute;
-  font-size: 1.5rem;
-  color: var(--title-color);
+    position: absolute;
+    color: var(--hijau-muda);
 }
-.forgot{
-  color: var(--title-color);
-  padding-bottom: 2rem;
-}
-.log__in,.sign__in{
-  display: block;
-  padding: .8rem 1.5rem;
-  border-radius: .5rem;
-  font-size: 16px;
-  border: none;
-  width: 300px;
-  color: var(--title-color);
-  background: var(--first-color);
-  cursor: pointer;
-  transition: background .3s;
-}
-.sign__in{
-    margin-top: 2rem;
-}
-.log__in input,.sign__in input{
-  display: flex;
-  justify-content: center;
-  border: none;
-  background: none;
-}
-.text__sign-up{
-  padding-top: .5rem;
-}
-.text__login{
-    padding-top: .5rem;
-}
-.reg__now,.log__now{
-  color: var(--first-color);
-}
-
-@media screen and (min-width: 1024px) {
-  .container {
-    margin-left: auto;
-    margin-right: auto;
+.input__box input{
+    outline: none;
+    border: none;
+    padding: .8rem 2rem .8rem 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    color: var(--first-color);
+    background: none;
+    border-bottom: 3px solid var(--hijau-tua);
   }
-  .login__container{
-    flex-direction: row;
-    height: 100vh;
-    margin-bottom: 0;
+  .input__box input:focus,
+  .input__box input:valid{
+    border-color: var(--hijau-tua);
   }
-  .login__left,.login__right{
+  .forgot{
+    padding-bottom: 1rem;
+    color: var(--hijau-muda);
+  }
+  .log__in,.sign__in{
+    display: block;
+    padding: .8rem 1.5rem;
+    border-radius: .5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: none;
+    width: 300px;
+    color: white;
+    background: var(--hijau-muda);
+    cursor: pointer;
+    transition: background .3s;
+  }
+  .sign__in{
+      margin-top: 2rem;
+  }
+  .log__in input,.sign__in input{
     display: flex;
-    width: 50%;
-    height: auto;
-    margin-bottom: 0;
+    justify-content: center;
+    border: none;
+    background: none;
   }
-  
-}
+  .text__sign-up{
+    padding-top: .5rem;
+  }
+  .text__login{
+      padding-top: .5rem;
+  }
+  .reg__now,.log__now{
+    color: var(--hijau-muda);
+    font-weight: 500;
+  }
+
+
+/*==========================SIGN======================*/
+@media screen and (min-width: 1024px) {
+    .container {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .login__container{
+      flex-direction: row;
+      height: 100vh;
+      margin-bottom: 0;
+    }
+    .login__left,.login__right{
+      display: flex;
+      width: 50%;
+      height: auto;
+      margin-bottom: 0;
+    }
+    .login__right{
+        justify-content: center;
+    }
+    
+  }
