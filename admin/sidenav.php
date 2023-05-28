@@ -15,10 +15,11 @@
     <div id="mySidenav" class="sidenav">
         <img src="../asset/logo.png" alt="">
         <a href="home.php" class="sidebar__icon"><i class="ri-home-6-line"></i>Dashboard</a>
-        <a href="#" class="sidebar__icon"><i class="ri-group-line"></i>Customer</a>
+        <a href="customers.php" class="sidebar__icon"><i class="ri-group-line"></i>Customer</a>
         <a href="product.php" class="sidebar__icon"><i class="ri-shopping-basket-line"></i>Product</a>
-        <a href="#" class="sidebar__icon"><i class="ri-account-circle-line"></i>Account</a>
-        <a href="../logout.php" class="sidebar__icon"><i class="ri-logout-box-line"></i>Logout</a>
+        <a href="rekening.php" class="sidebar__icon"><i class="ri-bank-card-line"></i>Rekening</a>
+        <a href="account.php" class="sidebar__icon"><i class="ri-account-circle-line"></i>Account</a>
+        <a href="logout.php" class="sidebar__icon"><i class="ri-logout-box-line"></i>Logout</a>
     </div>
 </body>
 </html>

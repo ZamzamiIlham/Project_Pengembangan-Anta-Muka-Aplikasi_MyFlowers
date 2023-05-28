@@ -1,31 +1,7 @@
 <?php
-require_once('./config/koneksi.php');
-/*
-if(isset($_POST['submit'])){
-
-    $name = mysqli_real_escape_string($conn, $_POST['username']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $pass = mysqli_real_escape_string($conn, ($_POST['password']));
-    $cpass = mysqli_real_escape_string($conn, ($_POST['cpassword']));
-    $select_users = mysqli_query($conn, "SELECT * FROM `admin` WHERE email = '$email' AND password = '$pass'") or die('query failed');
- 
-    if(mysqli_num_rows($select_users) > 0){
-        $message[] = 'user already exist!';
-       
-     }else{
-        if($pass != $cpass){
-           $message[] = 'confirm password not matched!';
-         
-        }else{
-           mysqli_query($conn, "INSERT INTO `admin`(username, email, password) VALUES('$name', '$email', '$cpass')") or die('query failed');
-           $message[] = 'registered successfully!';
-           header('location:login.php');
-        }
-     }
- }*/
  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
-    $username = $_POST['username'];
+    $nama = $_POST['nama'];
     $email =$_POST['email'];
     $password = $_POST['password'];
     $cpassword = $_POST['cpassword'];
@@ -36,9 +12,9 @@ if(isset($_POST['submit'])){
         $error = 'Password tidak sesuai dengan konfirmasi password';
     } else {
         
-        $url = 'http://localhost/JWT_PAA/api/signAdmin.php';
+        $url = 'http://localhost/JWT_PAA/api/Usersign.php';
         $data = [
-            'username' => $username,
+            'nama' => $nama,
             'email' => $email,
             'password' => $password
         ];
@@ -60,10 +36,13 @@ if(isset($_POST['submit'])){
         } else {
             $response = json_decode($result, true);
             if ($response && isset($response['status']) && $response['status'] === 'success') {
-                header('Location: login.php');
+                header('Location: loginUser.php');
                 exit();
             } else {
                 $error = isset($response['message']) ? $response['message'] : 'Terjadi kesalahan saat membuat akun';
+                if (isset($response['message']) && $response['message'] === 'Email sudah terdaftar') {
+                    $emailError = 'Email sudah terdaftar';
+                }
             }
         }
     }
@@ -110,7 +89,7 @@ if(isset($message)){
         <div class="lr__input flex">
             <div class="input__box">
                 <i class="ri-user-line"></i>
-                <input type="username" name="username" placeholder="enter your username " required class="box">
+                <input type="nama" name="nama" placeholder="enter your username" required class="box">
             </div>
             <div class="input__box">
                 <i class="ri-mail-line"></i>
@@ -124,13 +103,10 @@ if(isset($message)){
                 <i class="ri-lock-2-line"></i>
                 <input type="password" name="cpassword" placeholder="confirm password" required class="box">
             </div>
-            <!--<div class="sign__in button">
-                <input type="submit" name="submit" value="register now" class="btn">
-            </div>-->
             <button class="sign__in button" type="submit" name="submit" value="Daftar">
                Sign Now
             </button>
-            <div class="text__login">Already have an account? <a href="login.php" class="log__now">login now</a></div>
+            <div class="text__login">Already have an account? <a href="loginUser.php" class="log__now">login now</a></div>
         </div>
         </form>
     </div>

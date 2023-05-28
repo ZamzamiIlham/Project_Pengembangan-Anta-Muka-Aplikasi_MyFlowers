@@ -1,7 +1,7 @@
 <?php 
 include 'sidenav.php'; 
-$url = 'http://localhost/JWT_PAA/api/Adminproduct.php';
-$products = json_decode(file_get_contents($url), true);
+$url = 'http://localhost/JWT_PAA/api/Adminrekening.php';
+$rekenings = json_decode(file_get_contents($url), true);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,9 +28,9 @@ $products = json_decode(file_get_contents($url), true);
         </div>
 
         <div class="tambah">
-            <a href="productAdd.php" class="tambah__button flex">
+            <a href="rekeningAdd.php" class="tambah__button flex">
                 <i class="ri-add-box-fill"></i>
-                <p>Tambahkan Produk</p>
+                <p>Tambahkan Rekening</p>
             </a>
         </div>
 
@@ -39,9 +39,8 @@ $products = json_decode(file_get_contents($url), true);
                 <thead class="table__head">
                     <tr>
                         <th>NOMER</th>
-                        <th>NAMA</th>
-                        <th>STOK</th>
-                        <th>HARGA</th>
+                        <th>BANK</th>
+                        <th>NOMER</th>
                         <th>EDIT</th>
                         <th>HAPUS</th>
                     </tr>
@@ -49,15 +48,14 @@ $products = json_decode(file_get_contents($url), true);
                 <tbody>
                     <?php
                     $nomer= 1;
-                    foreach ($products as $product)
+                    foreach ($rekenings as $rekening)
                     :?>
                     <tr>
                         <td class="td"><?php echo $nomer++; ?></td>
-                        <td class="td"><?php echo $product['nama']; ?></td>
-                        <td class="td"><?php echo $product['stok']; ?></td>
-                        <td class="td"><?php echo $product['harga']; ?></td>
-                        <td class="td-1"><a href="productEdit.php?id=<?php echo $product['id']; ?>">Edit</a></td>
-                        <td class="td-1"><a href="productDelete.php?id=<?php echo $product['id']; ?>">Hapus</a></td>
+                        <td class="td"><?php echo $rekening['namaBank']; ?></td>
+                        <td class="td"><?php echo $rekening['nomerRekening']; ?></td>
+                        <td class="td-1"><a href="#">Edit</a></td>
+                        <td class="td-1"><a href="#">Hapus</a></td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>

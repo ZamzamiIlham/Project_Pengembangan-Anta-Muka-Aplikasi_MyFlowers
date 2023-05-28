@@ -1,0 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root{
+    --header-height: 3.5rem;
+
+    /*========== Colors ==========*/
+    /*Color mode HSL(hue, saturation, lightness)*/
+    --hijau-muda: rgb(65, 100, 74);
+    --hijau-tua:rgb(38, 58, 41);
+    --orange:rgb(232, 106, 51);
+    --cream:rgb(242, 227, 219);
+    --body-color: rgb(255, 255, 255);
+    --container-color: rgb(29, 32, 34);
+  
+    /*========== Font and typography ==========*/
+    /*.5rem = 8px | 1rem = 16px ...*/
+    --title-font: 'Merriweather', serif;
+    --body-font: 'Poppins', sans-serif;
+    --biggest-font-size: 2.25rem;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1rem;
+    --normal-font-size: .938rem;
+    --small-font-size: .813rem;
+    --smaller-font-size: .75rem;
+  
+    /*========== Font weight ==========*/
+    --font-medium: 500;
+    --font-semi-bold: 600;
+  
+    /*========== z index ==========*/
+    --z-tooltip: 10;
+    --z-fixed: 100;
+}
+
+@media screen and (min-width: 1024px) {
+    :root {
+      --biggest-font-size: 4rem;
+      --h1-font-size: 2.25rem;
+      --h2-font-size: 1.5rem;
+      --h3-font-size: 1.25rem;
+      --normal-font-size: 1rem;
+      --small-font-size: .875rem;
+      --smaller-font-size: .813rem;
+    }
+}
+
+/*=============== BASE ===============*/
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: var(--body-font);
+    font-style: var(--title-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--cream);
+    color: var(--text-color);
+    transition: background 0.4s; /* for dark mode animation */
+  }
+  
+  h1, h2, h3 {
+    font-weight: var(--font-medium);
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+    max-width: 100%;
+   /* margin-inline: 1.5rem; */
+  }
+  
+  .main {
+    overflow: hidden; /* For the animations */
+  }
+  .grid{
+    display: grid;
+  }
+  .flex{
+    display: flex;
+  }
+/*================= NAVBAR ==============*/
+.header{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: var(--z-fixed);
+    padding: 1rem 0;
+    background-color: var(--cream);
+}
+.nav{
+    margin-inline: 1.5rem;
+    position: relative;
+    display: flex;
+    height: var(--header-height);
+    justify-content: space-between;
+    align-items: center;
+}
+.nav__logo{
+    width: 60px;
+}
+.nav__list{
+    display: flex;
+    gap: 2rem;
+    transition: background .5s;
+}
+.nav__list :hover{
+    color: var(--hijau-muda);
+    transition: .3s;
+}
+.nav__item a{
+    font-weight: 600;
+    color: var(--hijau-tua);
+
+}
+.nav__icon{
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.sub-menu-wrap{
+    position: absolute;
+    top: 100%;
+    right: 0%;
+    width: 320px;
+    background-color: white;
+    box-shadow: -15px 10px 15px rgb(0 0 0 / 0.2); /* [horizontal offset] [vertical offset] [blur radius] [optional spread radius] [color] */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s;
+}
+.sub-menu-wrap.open-menu{
+    max-height: 400px;
+}
+.sub-menu{
+    padding: 1rem 1.5rem;
+}
+.user-info{
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+.user-info img{
+    width: 60px;
+    border-radius: 1rem;
+}
+.sub-menu hr{
+    margin-top: .8rem;
+    border: 0;
+    height: 2px;
+    background: black;
+}
+.sub__list{
+    padding-top: 1rem;
+}
+.sub__list hr{
+    margin-top: .8rem;
+    border: 0;
+    height: 2px;
+    background: black;
+}
+.sub__item{
+    padding-bottom: 1rem;
+    transition: color .3s;
+}
+.sub__item:hover{
+    color: var(--hijau-muda);
+}
+
+.item,.item_logout{
+    font-size: 1.2rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.item_logout{
+    padding-top: .8rem;
+}
+/*============= HOME =============*/
+.home{
+    position: relative;
+    padding-top: 6rem;
+    background-color: var(--cream);
+}
+.home__container{
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    padding: 0 1.5rem;
+}
+.home__left h1{
+    font-family: var(--title-font);
+    font-size: 3rem;
+    padding-bottom: 1rem;
+}
+.home__right{
+    display: flex;
+    justify-content: center;
+}
+.home__right img{
+    width: 80%;
+}
+.home__in{
+    margin-top: 1.5rem;
+    padding: .8rem .5rem;
+    border-radius: .5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: none;
+    width: 300px;
+    color: white;
+    background: var(--hijau-muda);
+    cursor: pointer;
+    transition: background .3s;
+}
+/*====== OUR SERVICE ========*/
+.our__service{
+    margin-top: 4rem;
+    background: var(--hijau-muda);
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.our__header{
+    padding-top: 2rem;
+    padding-bottom: .8rem;
+    font-family: var(--title-font);
+    color: white;
+}
+.our__line{
+    background-color: white;
+    padding-top: 3px;
+    width: 100px;
+    margin-bottom: 2rem;
+}
+.our__service p{
+    text-align: center;
+    color: white;
+}
+.our__content{
+    padding: 4rem 2rem;
+    grid-template-columns: repeat(3,1fr);
+    gap: 1rem;
+}
+.our1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.our1 i{
+    color: white;
+    font-size: 2rem;
+}
+/*======== ACCOUNT ===========*/
+.account{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10rem;
+  }
+  .account i{
+    font-size: 6rem;
+    color: var(--hijau-muda);
+    padding-bottom: 4rem;
+  }
+  .account__info{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+  .account__info p{
+  }

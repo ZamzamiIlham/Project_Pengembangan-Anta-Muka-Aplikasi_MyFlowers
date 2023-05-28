@@ -2,16 +2,14 @@
 include 'sidenav.php'; 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Mendapatkan data dari form
-    $nama = $_POST['nama'];
-    $stok = $_POST['stok'];
-    $harga = $_POST['harga'];
+    $namaBank = $_POST['namaBank'];
+    $nomerRekening = $_POST['nomerRekening'];
 
     // Mengirim permintaan POST ke API untuk menambahkan produk baru
-    $url = 'http://localhost/JWT_PAA/api/adminProduct.php';
+    $url = 'http://localhost/JWT_PAA/api/adminRekening.php';
     $data = [
-        'nama' => $nama,
-        'stok' => $stok,
-        'harga' => $harga
+        'namaBank' => $namaBank,
+        'nomerRekening' => $nomerRekening
     ];
 
     $options = [
@@ -26,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = file_get_contents($url, false, $context);
 
     // Redirect kembali ke halaman utama setelah berhasil menambahkan produk
-    header('Location: product.php');
+    header('Location: rekening.php');
     exit();
 }
 ?>
@@ -55,15 +53,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form method="POST" action="">
                 <div class="formAdd">
                     <label for="name">Nama:</label>
-                    <input type="text" name="nama" id="name"><br><br>
+                    <input type="text" name="namaBank" id="name"><br><br>
                 </div>
                 <div class="formAdd">
-                    <label for="stock">Stok:</label>
-                    <input type="number" name="stok" id="stok"><br><br>
-                </div>
-                <div class="formAdd">
-                    <label for="price">Harga:</label>
-                    <input type="number" name="harga" id="harga"><br><br>
+                    <label for="stock">No Rekening:</label>
+                    <input type="text" name="nomerRekening" id="noRekening"><br><br>
                 </div>
                 <div class="formAdd2">
                     <input class="log__in button"type="submit" value="Simpan">

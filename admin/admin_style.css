@@ -263,3 +263,23 @@ td a{
   border: none;
   background: none;
 }
+/*======== ACCOUNT ===========*/
+.account{
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.account i{
+  font-size: 6rem;
+  color: var(--hijau-muda);
+  padding-bottom: 4rem;
+}
+.account__info{
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+}
+.account__info p{
+  padding-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+}

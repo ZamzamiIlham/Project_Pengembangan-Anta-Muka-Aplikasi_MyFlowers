@@ -4,7 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
     $id = $_GET['id'];
 
     
-    $url = 'http://localhost/JWT_PAA/api/productAdmin.php?id=' . $id;
+    $url = 'http://localhost/JWT_PAA/api/Adminproduct.php?id=' . $id;
 
     $options = [
         'http' => [

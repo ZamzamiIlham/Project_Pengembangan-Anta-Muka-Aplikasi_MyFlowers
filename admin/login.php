@@ -2,8 +2,8 @@
 
 header('Access-Control-Allow-Origin:*');
 header('Access-Control-Allow-Method:POST');
-include './config/koneksi.php';
-include './vendor/autoload.php';
+include '../config/koneksi.php';
+include '../vendor/autoload.php';
 
 use \Firebase\JWT\JWT;
 
@@ -36,7 +36,7 @@ if(isset($_POST['submit'])){
                 'jwt' => $jwt,
                 'message' => 'Login Successfully',
             ]);
-            header('location:admin/home.php');
+            header('location:home.php');
         }else{
             echo json_encode([
                 'status' => 0,
@@ -57,19 +57,19 @@ if(isset($_POST['submit'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
     <!-- CSS-->
-    <link rel="stylesheet" href="sign_style.css">
+    <link rel="stylesheet" href="../sign_style.css">
     <!-- REMIX ICON -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 <body>
 <div class="login__container container">
     <div class="login__left flex">
-        <img src="./asset/logo.png" alt="">
+        <img src="../asset/logo.png" alt="">
         <h1>Flowers Shop</h1>
     </div>
     <div class="login__right flex">
         <div class="lr__header flex">
-            <h1>Login</h1>
+            <h1>Admin</h1>
             <p>Toko bunga terbaik di indonesia</p>
         </div>
         
@@ -87,7 +87,6 @@ if(isset($_POST['submit'])){
             <button  class="log__in button" type="submit" name="submit" >
                Login Now
             </button>
-            <div class="text__sign-up">Don't have an account? <a href="register.php" class="reg__now">register now</a></div>
         </div>
         </form>
     </div>

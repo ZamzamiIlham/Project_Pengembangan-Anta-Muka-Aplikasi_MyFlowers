@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $harga = $_POST['price'];
 
     // Mengirim permintaan PUT ke API untuk memperbarui data produk
-    $url = 'http://localhost/JWT_PAA/api/productAdmin.php';
+    $url = 'http://localhost/JWT_PAA/api/Adminproduct.php';
     $data = [
         'id' => $id,
         'nama' => $nama,
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_GET['id'];
 
     // Mendapatkan data produk dari API berdasarkan ID
-    $url = 'http://localhost/JWT_PAA/api/productAdmin.php?id='. $id; 
+    $url = 'http://localhost/JWT_PAA/api/Adminproduct.php?id='. $id; 
     $product = json_decode(file_get_contents($url), true);
 
     // Jika produk tidak ditemukan, kembalikan ke halaman utama

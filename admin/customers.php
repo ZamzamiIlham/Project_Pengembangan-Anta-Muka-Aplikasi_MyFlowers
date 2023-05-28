@@ -1,7 +1,7 @@
 <?php 
 include 'sidenav.php'; 
-$url = 'http://localhost/JWT_PAA/api/Adminproduct.php';
-$products = json_decode(file_get_contents($url), true);
+$url = 'http://localhost/JWT_PAA/api/Usersign.php';
+$customers = json_decode(file_get_contents($url), true);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,37 +27,30 @@ $products = json_decode(file_get_contents($url), true);
             <div class="clearfix"></div>
         </div>
 
-        <div class="tambah">
-            <a href="productAdd.php" class="tambah__button flex">
-                <i class="ri-add-box-fill"></i>
-                <p>Tambahkan Produk</p>
-            </a>
-        </div>
-
         <div class="table">
             <table class="table__produk">
                 <thead class="table__head">
                     <tr>
                         <th>NOMER</th>
-                        <th>NAMA</th>
-                        <th>STOK</th>
-                        <th>HARGA</th>
+                        <th>USERNAME</th>
+                        <th>EMAIL</th>
+                        <th>PASSWORD</th>
                         <th>EDIT</th>
                         <th>HAPUS</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    $nomer= 1;
-                    foreach ($products as $product)
+                    <?php 
+                    $nomer = 1;
+                    foreach ($customers as $customer)
                     :?>
                     <tr>
                         <td class="td"><?php echo $nomer++; ?></td>
-                        <td class="td"><?php echo $product['nama']; ?></td>
-                        <td class="td"><?php echo $product['stok']; ?></td>
-                        <td class="td"><?php echo $product['harga']; ?></td>
-                        <td class="td-1"><a href="productEdit.php?id=<?php echo $product['id']; ?>">Edit</a></td>
-                        <td class="td-1"><a href="productDelete.php?id=<?php echo $product['id']; ?>">Hapus</a></td>
+                        <td class="td"><?php echo $customer['nama']; ?></td>
+                        <td class="td"><?php echo $customer['email']; ?></td>
+                        <td class="td"><?php echo $customer['password']; ?></td>
+                        <td class="td-1">Edit</a></td>
+                        <td class="td-1">Hapus</a></td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
