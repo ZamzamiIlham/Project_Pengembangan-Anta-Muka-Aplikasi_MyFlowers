@@ -1,12 +1,6 @@
 <?php
-session_start(); // Memulai session
-
-// Menghapus semua data session
-session_unset();
-session_destroy();
-header('Cache-Control: no-store, no-cache, must-revalidate');
-
-// Mengarahkan pengguna ke halaman login atau halaman utama setelah logout
-header('Location: login.php'); // Ganti dengan halaman yang sesuai
-exit();
+// Menghapus cookie dengan nama SET_COOKIES
+setcookie('SET_COOKIES', '', time() - 3600, '/');
+// Redirect ke halaman login atau halaman lain yang sesuai setelah logout
+header('Location: login.php'); // Ubah "login.php" dengan halaman yang sesuai
 ?>

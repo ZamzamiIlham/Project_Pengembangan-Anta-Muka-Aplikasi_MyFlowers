@@ -1,39 +1,12 @@
 <?php
 include 'sidenav.php'; 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Mendapatkan data dari form
-    $nama = $_POST['nama'];
-    $stok = $_POST['stok'];
-    $harga = $_POST['harga'];
 
-    // Mengirim permintaan POST ke API untuk menambahkan produk baru
-    $url = 'http://localhost/JWT_PAA/api/adminProduct.php';
-    $data = [
-        'nama' => $nama,
-        'stok' => $stok,
-        'harga' => $harga
-    ];
-
-    $options = [
-        'http' => [
-            'method' => 'POST',
-            'header' => 'Content-Type: application/json',
-            'content' => json_encode($data)
-        ]
-    ];
-
-    $context = stream_context_create($options);
-    $result = file_get_contents($url, false, $context);
-
-    // Redirect kembali ke halaman utama setelah berhasil menambahkan produk
-    header('Location: product.php');
-    exit();
-}
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
     <div id="main">
@@ -52,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div class="addProduct flex">
-            <form method="POST" action="">
+            <form id="uploadForm" enctype="multipart/form-data">
                 <div class="formAdd">
                     <label for="name">Nama:</label>
                     <input type="text" name="nama" id="name"><br><br>
@@ -65,12 +38,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label for="price">Harga:</label>
                     <input type="number" name="harga" id="harga"><br><br>
                 </div>
+                <div class="formAdd">
+                    <label for="desk">Deskripsi:</label>
+                    <input type="text" name="deskripsi" id="deskripsi"><br><br>
+                </div>
+                <div class="formAdd">
+                    <input type="file" name="gambar" required>
+                </div>
                 <div class="formAdd2">
                     <input class="log__in button"type="submit" value="Simpan">
                 </div>
             </form>
+
+            <div id="message"></div>
         </div>
     </div>
+
+    <script>
+         $(document).ready(function() {
+            $("#uploadForm").on("submit", function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+
+            $.ajax({
+                url: "http://localhost/JWT_PAA/api/Adminproductupload.php",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    // Menampilkan pesan hasil operasi CRUD
+                    $("#message").html(response);
+
+                    // Mengosongkan form setelah unggah berhasil
+                    $("#uploadForm")[0].reset();
+
+                    // Menampilkan data terbaru setelah unggah berhasil
+                    showData();
+                }
+            });
+        });
+
+         });
+    </script>
     
 </body>
 </html>

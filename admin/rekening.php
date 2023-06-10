@@ -54,8 +54,8 @@ $rekenings = json_decode(file_get_contents($url), true);
                         <td class="td"><?php echo $nomer++; ?></td>
                         <td class="td"><?php echo $rekening['namaBank']; ?></td>
                         <td class="td"><?php echo $rekening['nomerRekening']; ?></td>
-                        <td class="td-1"><a href="#">Edit</a></td>
-                        <td class="td-1"><a href="#">Hapus</a></td>
+                        <td class="td-1"><a href="rekeningEdit.php?id=<?php echo $rekening['id']; ?>">Edit</a></td>
+                        <td class="td-1"><a href="rekeningDelete.php?id=<?php echo $rekening['id']; ?>">Hapus</a></td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>

@@ -1,7 +1,7 @@
 <?php 
 include 'sidenav.php'; 
-$url = 'http://localhost/JWT_PAA/api/Adminproduct.php';
-$products = json_decode(file_get_contents($url), true);
+//$url = 'http://localhost/JWT_PAA/api/Adminproduct.php';
+//$products = json_decode(file_get_contents($url), true);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +10,7 @@ $products = json_decode(file_get_contents($url), true);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
     <div id="main">
@@ -35,34 +36,58 @@ $products = json_decode(file_get_contents($url), true);
         </div>
 
         <div class="table">
-            <table class="table__produk">
+            <table class="table__produk" id="produkTable">
                 <thead class="table__head">
                     <tr>
                         <th>NOMER</th>
                         <th>NAMA</th>
                         <th>STOK</th>
                         <th>HARGA</th>
+                        <!--<th>DEKSRIPSI</th>-->
+                        <th>GAMBAR</th>
                         <th>EDIT</th>
                         <th>HAPUS</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    $nomer= 1;
-                    foreach ($products as $product)
-                    :?>
-                    <tr>
-                        <td class="td"><?php echo $nomer++; ?></td>
-                        <td class="td"><?php echo $product['nama']; ?></td>
-                        <td class="td"><?php echo $product['stok']; ?></td>
-                        <td class="td"><?php echo $product['harga']; ?></td>
-                        <td class="td-1"><a href="productEdit.php?id=<?php echo $product['id']; ?>">Edit</a></td>
-                        <td class="td-1"><a href="productDelete.php?id=<?php echo $product['id']; ?>">Hapus</a></td>
-                    </tr>
-                    <?php endforeach; ?>
+                    
                 </tbody>
             </table>
         </div>
-    </div>
+        <script>
+    $(document).ready(function() {
+        // Mengambil data produk dari API "read.php"
+        $.ajax({
+            url: "http://localhost/JWT_PAA/api/AdminProductread.php",
+            type: "GET",
+            success: function(response) {
+                var data = JSON.parse(response);
+
+                // Memasukkan data produk ke dalam tabel HTML
+                var tableBody = $("#produkTable tbody");
+                tableBody.empty();
+
+                for (var i = 0; i < data.length; i++) {
+                    var row = "<tr>";
+                    row += "<td>" + (i+1)+ "</td>";
+                    row += "<td>" + data[i].nama + "</td>";
+                    row += "<td>" + data[i].stok + "</td>";
+                    row += "<td>" + data[i].harga + "</td>";
+                    //row += "<td>" + data[i].deskripsi + "</td>";
+                    row += "<td><img src='../api/upload/" + data[i].gambar + "' width='50px'></td>";
+                    row += "<td>";
+                    row += "<a href='productEdit.php?id=" + data[i].id + "'>Edit</a>";
+                    row += "</td>"; // Penutup tag </td> tambahkan di sini
+                    row += "<td>";
+                    row += "<a href='productDelete.php?id=" + data[i].id + "'>Hapus</a>";
+                    row += "</td>"; // Penutup tag </td> tambahkan di sini
+                    row += "</tr>";
+
+                    tableBody.append(row);
+                }
+            }
+        });
+    });
+    </script>    
 </body>
 </html>

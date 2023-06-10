@@ -286,5 +286,115 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 3rem;
   }
-  .account__info p{
+  
+  /*=========== PRODUCT ==============*/
+.card__container {
+    padding-top: 8rem;
+    height: 100vh;
+    align-items: center;
+    display: grid;
+    gap: 1rem;
   }
+.card__grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    justify-content: center;
+    place-items: center;
+}
+  
+  .card {
+    width: 320px;
+    height: 440px;
+    border-radius: 1rem;
+    padding: 4rem 2rem 0;
+    color: var(--white-color);
+    overflow-y: hidden;
+  }
+  
+  .card_img {
+    position: absolute;
+    width: 260px;
+    filter: drop-shadow(5px 10px 15px rgba(245, 242, 242, 0.61));
+  }
+  
+  .card_data {
+    transform: translateY(13.2rem);
+    text-align: center;
+  }
+  
+  .card_title {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+  
+  .card_price {
+    display: inline-block;
+    font-size: var(--h2-font-size);
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+    color: var(--hijau-muda);
+  }
+  
+  .card_description {
+    font-size: var(--small-font-size);
+    text-align: initial;
+    margin-bottom: 1.25rem;
+    opacity: 0;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .card_number{
+    width: 40%;
+    border: none;
+    height: 50px;
+  }
+  .card_button {
+    display: block;
+    width: max-content;
+    padding: 1.125rem 2rem;
+    background-color: var(--hijau-muda);
+    color: var(--body-color);
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: 0.2s;
+    opacity: 0;
+  }
+  
+  .card_img, 
+  .card_data, 
+  .card_title, 
+  .card_price, 
+  .card_number,
+  .card_description {
+    transition: 0.5s;
+  }
+  
+  /*** Hover card effect ***/
+  .card:hover .card_img {
+    transform: translate(-1.5rem, -9.5rem) rotate(-20deg);
+  }
+  
+  .card:hover .card_data {
+    transform: translateY(4.8rem);
+  }
+  
+  .card:hover .card_title {
+    transform: translateX(-2.3rem);
+    margin-bottom: 0;
+  }
+  
+  .card:hover .card_price{
+    transform: translateX(-3rem);
+  }
+  
+  .card:hover .card_description,
+  .card:hover .card_number, 
+  .card:hover .card_button {
+    transition-delay: 0.2s;
+    opacity: 1;
+  }
+  

@@ -1,20 +1,18 @@
 <?php
 
-//include 'sidenav.php'; 
+include 'sidenav.php'; 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Mendapatkan data dari form
     $id = $_POST['id'];
-    $nama = $_POST['nama'];
-    $stok = $_POST['stok'];
-    $harga = $_POST['harga'];
+    $namaBank = $data['namaBank'];
+    $nomerRekening = $data ['nomerRekening'];
 
     // Mengirim permintaan PUT ke API untuk memperbarui data produk
-    $url = 'http://localhost/JWT_PAA/api/Adminproduct.php';
+    $url = 'http://localhost/JWT_PAA/api/Adminrekening.php';
     $data = [
         'id' => $id,
-        'nama' => $nama,
-        'stok' => $stok,
-        'harga' => $harga
+        'namaBank' => $namaBank,
+        'nomerRekening' => $nomerRekening
     ];
 
     $options = [
@@ -29,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = file_get_contents($url, false, $context);
 
     // Redirect kembali ke halaman utama setelah berhasil memperbarui produk
-    header('Location: product.php');
+    header('Location: rekening.php');
     exit();
 } else {
     // Mendapatkan ID produk dari parameter URL
@@ -38,12 +36,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "ID Produk: " . $id;
 
     // Mendapatkan data produk dari API berdasarkan ID
-    $url = 'http://localhost/JWT_PAA/api/Adminproduct.php?id='.$id; 
-    $product = json_decode(file_get_contents($url), true);
+    $url = 'http://localhost/JWT_PAA/api/Adminrekening.php?id='.$id; 
+    $rekening = json_decode(file_get_contents($url), true);
 
     // Jika produk tidak ditemukan, kembalikan ke halaman utama
-    if (empty($product)) {
-        header('Location: product.php');
+    if (empty($rekening)) {
+        header('Location: rekening.php');
         exit();
     }
 }
@@ -72,18 +70,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
     <div class="addProduct flex">
         <form method="POST" action="">
-        <input type="hidden" name="id" value="<?php echo isset($product['id']) ? $product['id'] : ''; ?>">
+        <input type="hidden" name="id" value="<?php echo isset($rekening['id']) ? $rekening['id'] : ''; ?>">
             <div class="formAdd">
-            <label for="nama">Nama:</label>
-            <input type="text" name="nama" id="nama" value="<?php echo isset($product['nama']) ? $product['nama'] : ''; ?>"><br><br>
+            <label for="namaBank">Nama Rekening:</label>
+            <input type="text" name="namaBank" id="namaBank" value="<?php echo isset($rekening['namaBank']) ? $rekening['namaBank'] : ''; ?>"><br><br>
             </div>
             <div class="formAdd">
-            <label for="stok">Stok:</label>
-            <input type="number" name="stok" id="stok" value="<?php echo isset($product['stok']) ? $product['stok'] : ''; ?>"><br><br>
-            </div>
-            <div class="formAdd">
-            <label for="harga">Harga:</label>
-            <input type="number" name="harga" id="harga" value="<?php echo isset($product['harga']) ? $product['harga'] : ''; ?>"><br><br>
+            <label for="nomerRekening">Nomer Rekening:</label>
+            <input type="text" name="nomerRekening" id="nomerRekening" value="<?php echo isset($rekening['nomerRekening']) ? $rekening['nomerRekening'] : ''; ?>"><br><br>
             </div>
             <div class="formAdd2">
             <input class="log__in button" type="submit" value="Simpan">

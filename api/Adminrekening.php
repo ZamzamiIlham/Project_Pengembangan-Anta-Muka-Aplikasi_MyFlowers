@@ -38,5 +38,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 }
 
+if($_SERVER['REQUEST_METHOD'] === 'PUT'){
+    $data = json_decode(file_get_contents('php://input'), true);
 
+    $id = $data['id'];
+    $namaBank = $data['namaBank'];
+    $nomerRekening = $data ['nomerRekening'];
+
+    $query = "UPDATE rekening SET namaBank='$namaBank', nomerRekening='$nomerRekening' WHERE id=$id";
+    $result= mysqli_query($conn,$query);
+
+    if ($result) {
+        $response = ['message' => 'Produk berhasil diperbarui'];
+        http_response_code(200);
+    } else {
+        $response = ['message' => 'Terjadi kesalahan saat memperbarui produk'];
+        http_response_code(500);
+    }
+
+    // Mengembalikan respons dalam format JSON
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+    // Mendapatkan ID produk yang akan dihapus
+    $id = $_GET['id'];
+
+    // Menghapus produk dari database
+    $query = "DELETE FROM rekening WHERE id = $id";
+    $result = mysqli_query($conn, $query);
+
+    if ($result) {
+        $response = ['message' => 'Produk berhasil dihapus'];
+        http_response_code(200);
+    } else {
+        $response = ['message' => 'Terjadi kesalahan saat menghapus produk'];
+        http_response_code(500);
+    }
+
+    // Mengembalikan respons dalam format JSON
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}
 ?>

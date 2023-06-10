@@ -23,10 +23,10 @@
                 <div class="nav__menu" id="nav-menu">
                     <ul class="nav__list">
                         <li class="nav__item">
-                            <a href="userhome.php" class="nav__link">Home</a>
+                            <a href="userHome.php" class="nav__link">Home</a>
                         </li>
                         <li class="nav__item">
-                            <a href="#" class="nav__link">Flowers</a>
+                            <a href="userProduct.php" class="nav__link">Flowers</a>
                         </li>
                         <li class="nav__item">
                             <a href="#" class="nav__link">Payment</a>
