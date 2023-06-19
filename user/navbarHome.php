@@ -29,7 +29,7 @@
                             <a href="userProduct.php" class="nav__link">Flowers</a>
                         </li>
                         <li class="nav__item">
-                            <a href="#" class="nav__link">Payment</a>
+                            <a href="userPayment.php" class="nav__link">Payment</a>
                         </li>
                         <li class="nav__item">
                             <a href="#" class="nav__link">Contact</a>

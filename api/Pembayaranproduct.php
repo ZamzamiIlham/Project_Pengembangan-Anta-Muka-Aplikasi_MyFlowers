@@ -1,7 +1,20 @@
 <?php
 include '../config/koneksi.php';
 
-// Ambil ID produk, user_id, quantity, dan total_price dari permintaan POST
+//MELIHAT DATA
+if ($_SERVER['REQUEST_METHOD'] === 'GET'){
+    $query = "SELECT * FROM pembayaran";
+    $result = mysqli_query($conn,$query);
+
+    $rekenings = [];
+    while ($row = mysqli_fetch_assoc($result)){
+        $rekenings[] =$row;
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($rekenings);
+}
+// MENYIMPAN DATA
 if (isset($_POST['product_id']) && isset($_POST['user_id']) && isset($_POST['quantity']) && isset($_POST['total_price'])) {
     $product_id = $_POST['product_id'];
     $user_id = $_POST['user_id'];
@@ -23,14 +36,11 @@ if (isset($_POST['product_id']) && isset($_POST['user_id']) && isset($_POST['qua
     // Jika data produk ditemukan
     if ($product) {
         // Simpan data produk ke dalam tabel pembayaran
-        $nama = $product['nama'];
-        $harga = $product['harga'];
-        $deskripsi = $product['deskripsi'];
-        $gambar = $product['gambar'];
+      
 
         // Bind parameter untuk query prepared statement
-        $stmt = $conn->prepare("INSERT INTO pembayaran (user_id, product_id, nama, harga, deskripsi, gambar, quantity, total_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("iisdsbii", $user_id, $product_id, $nama, $harga, $deskripsi, $gambar, $quantity, $total_price);
+        $stmt = $conn->prepare("INSERT INTO pembayaran (user_id, product_id,quantity, total_price) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("iiii", $user_id, $product_id,$quantity, $total_price);
 
         if ($stmt->execute()) {
             echo "Data produk berhasil disimpan ke tabel pembayaran.";
@@ -48,3 +58,4 @@ if (isset($_POST['product_id']) && isset($_POST['user_id']) && isset($_POST['qua
 
 $conn->close();
 ?>
+

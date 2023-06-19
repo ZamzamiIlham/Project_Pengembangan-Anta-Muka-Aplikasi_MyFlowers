@@ -1,21 +1,5 @@
 <?php
-/*session_start();
-include 'navbarHome.php'; 
-// Memeriksa apakah pengguna telah login
-if (!isset($_SESSION['user_id'])) {
-    // Jika tidak, mengarahkan pengguna kembali ke halaman login
-    header('Location: loginUser.php');
-    exit();
-}
 
-// Include file koneksi.php
-include '../config/koneksi.php';
-
-// Mendapatkan data pengguna dari database berdasarkan ID
-$userID = $_SESSION['user_id'];
-$query = "SELECT * FROM users WHERE id = '$userID'";
-$result = mysqli_query($conn, $query);
-$userData = mysqli_fetch_assoc($result);*/
 session_start();
 include 'navbarHome.php'; 
 if (!isset($_SESSION['user_id'])) {
