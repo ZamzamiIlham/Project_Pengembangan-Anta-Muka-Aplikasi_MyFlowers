@@ -31,11 +31,12 @@ if (mysqli_num_rows($result) > 0) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve the updated profile information from the form submission
     $username = $_POST['username'];
+    $alamat = $_POST['alamat'];
     $email = $_POST['email'];
     $password = $_POST['password'];
 
     // Update the profile information in the database
-    $updateQuery = "UPDATE users SET nama = '$username', email = '$email', password = '$password' WHERE id = '$userID'";
+    $updateQuery = "UPDATE users SET nama = '$username', email = '$email', alamat ='$alamat', password = '$password' WHERE id = '$userID'";
     mysqli_query($conn, $updateQuery);
 
     // Redirect the user back to the profile page after successful update
@@ -64,14 +65,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form action="" method="POST">
                 <div class="account__left">
                     <p>Username</p>
+                    <p>Alamat</p>
                     <p>Email</p>
                     <p>Password</p>
                 </div>
             
                 <div class="account__right">
                     <input type="text" id="username" name="username" value="<?php echo $userData['nama']; ?>" required>
+                    <input type="text" id="alamat" name="alamat" value="<?php echo $userData['alamat']; ?>" required>
                     <input type="email" id="email" name="email" value="<?php echo $userData['email']; ?>" required>
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="password" name="password" value="<?php echo $userData['password']; ?>" required>
                 </div>
 
                 <button type="submit" class="home__in button" name="submit">Save</button>

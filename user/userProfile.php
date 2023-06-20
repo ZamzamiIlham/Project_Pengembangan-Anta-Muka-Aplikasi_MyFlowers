@@ -36,6 +36,7 @@ if (!isset($_SESSION['user_id'])) {
                         // Mengisi konten dengan data pengguna
                         var user = response.user;
                         $('#username').text(user.nama);
+                        $('#alamat').text(user.alamat);
                         $('#email').text(user.email);
                         $('#password').text(user.password);
                     } else {
@@ -58,13 +59,15 @@ if (!isset($_SESSION['user_id'])) {
         <i class="ri-shield-user-line"></i>
         <div class="account__info grid">
             <div class="account__left">
-                <p>Username</p>
+                <p>nama</p>
+                <p>alamat</p>
                 <p>Email</p>
                 <p>Password</p>
             </div>
         
             <div class="account__right">
                 <p id="username"></p>
+                <p id="alamat"></p>
                 <p id="email"></p>
                 <p id="password"></p>
             </div>
