@@ -33,10 +33,10 @@ $customers = json_decode(file_get_contents($url), true);
                     <tr>
                         <th>NOMER</th>
                         <th>USERNAME</th>
+                        <th>ALAMAT</th>
                         <th>EMAIL</th>
                         <th>PASSWORD</th>
-                        <th>EDIT</th>
-                        <th>HAPUS</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -47,10 +47,10 @@ $customers = json_decode(file_get_contents($url), true);
                     <tr>
                         <td class="td"><?php echo $nomer++; ?></td>
                         <td class="td"><?php echo $customer['nama']; ?></td>
+                        <td class="td"><?php echo $customer['alamat']; ?></td>
                         <td class="td"><?php echo $customer['email']; ?></td>
                         <td class="td"><?php echo $customer['password']; ?></td>
-                        <td class="td-1">Edit</a></td>
-                        <td class="td-1">Hapus</a></td>
+                        
                     </tr>
                     <?php endforeach; ?>
                 </tbody>

@@ -18,6 +18,7 @@
         <a href="customers.php" class="sidebar__icon"><i class="ri-group-line"></i>Customer</a>
         <a href="product.php" class="sidebar__icon"><i class="ri-shopping-basket-line"></i>Product</a>
         <a href="rekening.php" class="sidebar__icon"><i class="ri-bank-card-line"></i>Rekening</a>
+        <a href="pembayaran.php" class="sidebar__icon"><i class="ri-bank-card-line"></i>Pembayaran</a>
         <a href="account.php" class="sidebar__icon"><i class="ri-account-circle-line"></i>Account</a>
         <a href="logout.php" class="sidebar__icon"><i class="ri-logout-box-line"></i>Logout</a>
     </div>

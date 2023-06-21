@@ -1,7 +1,5 @@
 <?php 
 include 'sidenav.php'; 
-//$url = 'http://localhost/JWT_PAA/api/Adminproduct.php';
-//$products = json_decode(file_get_contents($url), true);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,12 +39,9 @@ include 'sidenav.php';
                     <tr>
                         <th>NOMER</th>
                         <th>NAMA</th>
-                        <th>STOK</th>
+                        <th>JUMLAH</th>
                         <th>HARGA</th>
-                        <!--<th>DEKSRIPSI</th>-->
                         <th>GAMBAR</th>
-                        <th>EDIT</th>
-                        <th>HAPUS</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,7 +53,7 @@ include 'sidenav.php';
     $(document).ready(function() {
         // Mengambil data produk dari API "read.php"
         $.ajax({
-            url: "http://localhost/JWT_PAA/api/AdminProductread.php",
+            url: "http://localhost/JWT_PAA/api/UserBuktiRead.php",
             type: "GET",
             success: function(response) {
                 var data = JSON.parse(response);
@@ -70,17 +65,12 @@ include 'sidenav.php';
                 for (var i = 0; i < data.length; i++) {
                     var row = "<tr>";
                     row += "<td>" + (i+1)+ "</td>";
-                    row += "<td>" + data[i].nama + "</td>";
-                    row += "<td>" + data[i].stok + "</td>";
-                    row += "<td>" + data[i].harga + "</td>";
-                    //row += "<td>" + data[i].deskripsi + "</td>";
-                    row += "<td><img src='../api/upload/" + data[i].gambar + "' width='100px'></td>";
+                    row += "<td>" + data[i].nama_user + "</td>";
+                    row += "<td>" + data[i].quantity + "</td>";
+                    row += "<td>" + data[i].total_price + "</td>";
                     row += "<td>";
-                    row += "<a href='productEdit.php?id=" + data[i].id + "'>Edit</a>";
-                    row += "</td>"; // Penutup tag </td> tambahkan di sini
-                    row += "<td>";
-                    row += "<a href='productDelete.php?id=" + data[i].id + "'>Hapus</a>";
-                    row += "</td>"; // Penutup tag </td> tambahkan di sini
+                    row += "<a href='pembayaranDetail.php?id=" + data[i].id + "'>Lihat</a>";
+                    row += "</td>"; 
                     row += "</tr>";
 
                     tableBody.append(row);

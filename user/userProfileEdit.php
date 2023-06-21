@@ -1,6 +1,7 @@
 <?php
 session_start();
 include '../config/koneksi.php';
+include 'navbarHome.php'; 
 
 // Memeriksa apakah pengguna telah login
 if (!isset($_SESSION['user_id'])) {
@@ -55,8 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
     <!--=============== REMIXICONS ===============-->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-    <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="user_style.css">
+    
 </head>
 <body>
     <div class="account flex container">
